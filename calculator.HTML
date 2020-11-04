@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>
+        calculator
+    </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="calculator.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js "
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN "
+        crossorigin="anonymous "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js "
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q "
+        crossorigin="anonymous "></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js "
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl "
+        crossorigin="anonymous "></script>
+    <style>
+        #heading {
+            font-size: 50px;
+            font-weight: bold;
+            color: pink;
+            text-align: center;
+        }
+
+        body {
+            background-color: green;
+        }
+
+        #calci {
+
+            width: 400px;
+            background-color: lightblue;
+            padding: 30px;
+        }
+
+        #history,
+        #output {
+            font-family: "Exo";
+            font-size: 2rem;
+            height: 60px;
+            font-weight: bold;
+            color: #1976d2;
+            box-shadow: 1px 0px 2px 2px red;
+        }
+
+        #button {
+            padding-top: 30px;
+        }
+
+        .btn {
+            border-radius: 50px 50px 50px 50px;
+
+        }
+    </style>
+
+</head>
+
+<body>
+    <p id="heading">
+        Basic calculator
+    </p>
+    <div>
+        <div id="calci" class="container justify-content-md-center">
+            <div class="row " id="input">
+
+                <div id="history" class="col-12">
+                    <p id="history-value"></p>
+                </div>
+                <div id="output" class="col-12">
+                    <p id="output-value"></p>
+                </div>
+
+            </div>
+            <div id="button" class="row">
+                <button id="AC" class="btn btn-primary btn-lg col-3" value="AC">AC</button>
+                <button id="C" class="btn btn-primary btn-lg col-6" value="clear">C</button>
+                <button id="operator" class="btn btn-primary btn-lg col-3" value="/">/</button>
+                <button id="number" class="btn btn-primary  btn-lg col-3" value="7">7</button>
+                <button id="number" class="btn btn-primary btn-lg col-3" value="8">8</button>
+                <button id="number" class="btn btn-primary btn-lg col-3" value="9">9</button>
+                <button id="operator" class="btn btn-primary btn-lg col-3" value="+">+</button>
+                <button id="number" class="btn btn-primary btn-lg col-3" value="4">4</button>
+                <button id="number" class="btn btn-primary btn-lg col-3" value="5">5</button>
+                <button id="number" class="btn btn-primary btn-lg col-3" value="6">6</button>
+                <button id="operator" class="btn btn-primary btn-lg col-3" value="-">-</button>
+                <button id="number" class="btn btn-primary btn-lg col-3" value="1">1</button>
+                <button id="number" class="btn btn-primary btn-lg col-3" value="2">2</button>
+                <button id="number" class="btn btn-primary btn-lg col-3" value="3">3</button>
+                <button id="operator" class="btn btn-primary btn-lg col-3" value="*">*</button>
+                <button id="sqr" class="btn btn-primary btn-lg col-3" value="sqr">sqr</button>
+                <button id="number" class="btn btn-primary btn-lg col-3" value="0">0</button>
+                <button id="sqrroot" class="btn btn-primary btn-lg col-3" value="sqrroot">sqrroot</button>
+                <button id="equal" class="btn btn-danger btn-lg col-3" value="equal">=</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script>
+
+    var num = "";
+    var sum = "";
+    var his = "";
+    $('document').ready(function () {
+        $('button').click(function () {
+            var display = function (a, b) {
+                var output = document.getElementById("history-value").innerHTML = his;
+                var history = document.getElementById("output-value").innerHTML = out;
+                return output, history;
+            };
+            if (this.id == "number") {
+                num = $(this).attr('value')
+                his = his + num;
+                num = sum + this.value;
+                document.getElementById("output-value").innerHTML = num;
+                sum = num;
+                val = this.value;
+
+            }
+            if (this.id == "operator") {
+                his = his + this.value;
+                if (num == "") {
+                    num = num + this.value;
+                    document.getElementById("output-value").innerHTML = num;
+                    sum = num;
+                }
+                else {
+                    if (num != 0) {
+                        num = eval(num);
+                    }
+                    num = num + this.value;
+                    out = num;
+                    document.getElementById("output-value").innerHTML = out;
+                    document.getElementById("history-value").innerHTML = his;
+                    sum = num;
+                }
+            }
+            if (this.id == "equal") {
+                var out = eval(num);
+                document.getElementById("output-value").innerHTML = out;
+                document.getElementById("history-value").innerHTML = his;
+                num = out;
+                sum = "";
+                his = num;
+            }
+            if (this.id == "AC") {
+                num = "";
+                sum = "";
+                out = "";
+                his = "";
+                var answer = display(output, history);
+            }
+            if (this.id == "C") {
+                num = num.substr(0, num.length - 1);
+                his = his.substr(0, his.length - 1);
+                out = num;
+                var answer = display(output, history);
+                sum = num;
+            }
+            if (this.id == "sqr") {
+                out = Math.pow(num, 2);
+                var answer = display(output, history);
+                num = out;
+                sum = "";
+                his = "";
+            }
+            if (this.id == "sqrroot") {
+                out = Math.sqrt(num, 2);
+                var answer = display(output, history);
+                num = out;
+                sum = "";
+                his = "";
+            }
+        });
+    });
+
+</script>
+
+</html>
